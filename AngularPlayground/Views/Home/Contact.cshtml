@@ -1,0 +1,58 @@
+﻿<body ng-app>
+<h1>
+    Data Binding Expression
+</h1>
+<div ng-init="firstName='John'; lastName='Doe';">
+    <strong>First name:</strong> {{firstName}} <br/>
+    <strong>Last name:</strong> <span ng-bind="lastName" />
+</div>
+    <h1>
+        Template
+        </h1>
+    <div ng-init="personName='John Doe'">
+        <input ng-model="personName" /> {{personName}}
+    </div>
+    <h1>
+    Repeat Directive
+    </h1>
+<div ng-init="names=['John Doe', 'Mary Jane', 'Bob Parker']">
+    <ul>
+        <li ng-repeat="name in names">
+            {{name}}
+        </li>
+    </ul>
+</div>
+    <h1>
+        Array Object Properties
+    </h1>
+<div ng-init="names=[
+		{firstName:'John', lastName:'Doe'},
+		{firstName:'Mary', lastName:'Jane'},
+		{firstName:'Bob', lastName:'Parker'}]">
+    <ul>
+        <li ng-repeat="name in names">
+            {{name.firstName + ' ' + name.lastName}}
+        </li>
+    </ul>
+</div>
+    <h1>
+        First, Last, Odd, Even, Index
+    </h1>
+    <div ng-init="names=[
+		{firstName:'John', lastName:'Doe'},
+		{firstName:'Mary', lastName:'Jane'},
+		{firstName:'Bob', lastName:'Parker'}]">
+        <ul>
+            <li ng-repeat="name in names">
+                {{name.firstName + ' ' + name.lastName}} at index {{$index}}
+                <span ng-show="{{$first}}">, the first position</span>
+                <span ng-show="{{$last}}">, the last position</span>
+                <span ng-show="{{$odd}}">,which is odd-numbered.</span>
+                <span ng-show="{{$even}}">,which is even-numbered.</span>
+            </li>
+        </ul>
+    </div>
+
+<script src="~/Scripts/scope.js"></script>
+<script src="~/Scripts/angular.js"></script>
+</body>
