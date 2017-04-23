@@ -54,19 +54,18 @@ namespace EATurnerDataBackend.Repositories
                 var response = new DetailSearchResponse();
                 response.Error = string.Empty;
                 var movie = new Movie();
+
                 var titles = new List<Title>();
-                var awards = new List<Award>();
+                var awards = new List<AwardData>();
                 var genres = new List<Genre>();
                 var othernames = new List<OtherName>();
                 var participants = new List<Participant>();
                 var storylines = new List<StoryLine>();
-                var titleGenres = new List<TitleGenre>();
-                var titleParticipants = new List<TitleParticipant>();
 
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["TitleDBConnectionString"]))
                 {
                     titles = conn.Query<Title>("SELECT * FROM Titles.dbo.Title WHERE TitleId = " + request.TitleId).ToList();
-                    awards = conn.Query<Award>("SELECT * FROM Titles.dbo.Award WHERE TitleId = " + request.TitleId).ToList();
+                    awards = conn.Query<AwardData>("SELECT * FROM Titles.dbo.Award WHERE TitleId = " + request.TitleId).ToList();
                     genres = conn.Query<Genre>(" SELECT g.* FROM Titles.dbo.Title t" +
                                                  " JOIN Titles.dbo.TitleGenre tg ON t.TitleId = tg.TitleId" +
                                                  " JOIN Titles.dbo.Genre g ON tg.GenreId = g.Id" +
@@ -79,19 +78,12 @@ namespace EATurnerDataBackend.Repositories
                                                                          " WHERE t.TitleId = " + request.TitleId).ToList();
                 }
 
-                //foreach(var participant in titleParticipants)
-                //{
-                //    participants.Add()
-                //}
-
                 movie.Titles = titles;
                 movie.Awards = awards;
                 movie.Genres = genres;
                 movie.OtherNames = othernames;
                 movie.Actors = participants;
                 movie.StoryLines = storylines;
-                movie.TitleGenres = titleGenres;
-                movie.TitleParticipants = titleParticipants;
 
                 response.Movie = movie;
                 return response;

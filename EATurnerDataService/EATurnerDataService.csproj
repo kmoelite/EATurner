@@ -194,7 +194,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceModel\Participant.cs" />
-    <Compile Include="ServiceModel\Award.cs" />
+    <Compile Include="ServiceModel\AwardData.cs" />
     <Compile Include="ServiceModel\Genre.cs" />
     <Compile Include="ServiceModel\Movie.cs" />
     <Compile Include="ServiceModel\OtherName.cs" />

@@ -10,12 +10,12 @@
     <h4>Actors</h4>
     <br />
 
-    <table class="table table-responsive table-condensed table-hover">
+    <table class="table table-responsive table-condensed table-hover" style="overflow-y:scroll" >
         <tr>
             <td style="font-weight:bold">
                 Actor
             </td>
-            <td>
+            <td style="font-weight:bold">
                 Type
             </td>
         </tr>
@@ -38,44 +38,58 @@
     <h4>Awards</h4>
     <br />
 
-    <table class="table table-responsive table-condensed table-hover">
+    <table class="table table-responsive table-condensed table-hover" style="overflow-y:scroll">
         <tr>
-            <td>
+            <td style="font-weight:bold">
                 Award
             </td>
-            <td>
+            <td style="font-weight:bold">
                 Company
             </td>
-            <td>
+            <td style="font-weight:bold">
                 Year
             </td>
-            <td>
+            <td style="font-weight:bold">
                 Status
             </td>
         </tr>
-        @foreach (var award in Model.Awards)
+        @foreach (var awardItem in Model.Awards)
         {
             <tr>
                 <td>
-                    <b>@award.AwardName</b>
+                    <b>@awardItem.Award</b>
                 </td>
                 <td>
-                    @award.AwardCompany
+                    @awardItem.AwardCompany
                 </td>
                 <td>
-                    @award.AwardTime.Year
+                    @awardItem.AwardYear
                 </td>
-                @if (award.AwardWon)
+                @if (awardItem != null)
                 {
-                    <td>
-                        <b style="color:green">Won</b>
-                    </td>
+                    if (awardItem.AwardWon != null)
+                    {
+                        if (awardItem.AwardWon == true)
+                        {
+                        <td>
+                            <b style="color:green">Won</b>
+                        </td>
+                        }
+                        else
+                        {
+                        <td>
+                            <b style = "color:red" > Nominated </b>
+                         </td>
+                        }
+                    }
+                    else
+                    {
+                        <b> --- </b>
+                    }
                 }
                 else
                 {
-                    <td>
-                    <b style="color:red">Nominated</b>
-                    </td>
+                    <b> --- </b>
                 }
             </tr>
         }

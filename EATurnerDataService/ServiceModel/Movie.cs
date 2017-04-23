@@ -7,13 +7,13 @@ namespace EATurnerDataService.ServiceModel
 {
     public class Movie
     {
-        public List<Title> Titles { get; set; }
-        public List<Participant> Actors { get; set; }
-        public List<Award> Awards { get; set; }
-        public List<OtherName> OtherNames { get; set; }
-        public List<Genre> Genres { get; set; }
-        public List<StoryLine> StoryLines { get; set; }
-        public List<TitleGenre> TitleGenres {get; set;}
-        public List<TitleParticipant> TitleParticipants { get; set; }
+        public List<ServiceModel.Title> Titles { get; set; }
+        public List<ServiceModel.Participant> Actors { get; set; }
+        public List<ServiceModel.AwardData> Awards { get; set; }
+        public List<ServiceModel.OtherName> OtherNames { get; set; }
+        public List<ServiceModel.Genre> Genres { get; set; }
+        public List<ServiceModel.StoryLine> StoryLines { get; set; }
+        public List<ServiceModel.TitleGenre> TitleGenres {get; set;}
+        public List<ServiceModel.TitleParticipant> TitleParticipants { get; set; }
     }
 }

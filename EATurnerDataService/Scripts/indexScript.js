@@ -54,12 +54,13 @@ function loadDetailsView(id) {
         url: "/Home/GetMovieDetails/",
         data: { titleId: id },
     }).success(function (result) {
-        $('#loadingDiv').hide()
+        $('#loadingDiv').hide();
         console.log(result);
         $('#detailedMediaResultsDivResult').html(result);
         $('#detailedMediaResultsDivResult').show();
         $('#SearchByDropDownDiv').show();
-    }).error(function (result) {
+        }).error(function (result) {
+            alert('failure');
         console.log(result);
         //alert('An unexpected error has occurred. Please try again.');
         //location.reload();
