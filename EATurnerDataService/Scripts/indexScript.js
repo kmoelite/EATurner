@@ -47,6 +47,7 @@ function submitTextSearch() {
 
 function loadDetailsView(id) {
     $('#loadingDiv').show();
+    $('#detailedMediaResultsDivResult').hide();
     $('#searchByTitleResultDiv').hide();
     $.ajax({
         type: "POST",

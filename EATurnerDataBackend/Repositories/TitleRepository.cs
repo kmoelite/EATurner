@@ -67,15 +67,22 @@ namespace EATurnerDataBackend.Repositories
                 {
                     titles = conn.Query<Title>("SELECT * FROM Titles.dbo.Title WHERE TitleId = " + request.TitleId).ToList();
                     awards = conn.Query<Award>("SELECT * FROM Titles.dbo.Award WHERE TitleId = " + request.TitleId).ToList();
-                    //genres = conn.Query<Genre>("SELECT * FROM Titles.dbo.Title WHERE TitleId = " + request.TitleId).ToList();
-                    //othernames = conn.Query<OtherName>("SELECT * FROM Titles.dbo.Title WHERE TitleId = " + request.TitleId).ToList();
-                    storylines = conn.Query<StoryLine>("SELECT * FROM Titles.dbo.Title WHERE TitleId = " + request.TitleId).ToList();
-                    //titleGenres = conn.Query<TitleGenre>("SELECT * FROM Titles.dbo.Title WHERE TitleId = " + request.TitleId).ToList();
-                    titleParticipants = conn.Query<TitleParticipant>(" SELECT p.* FROM Titles.dbo.Title t" +
+                    genres = conn.Query<Genre>(" SELECT g.* FROM Titles.dbo.Title t" +
+                                                 " JOIN Titles.dbo.TitleGenre tg ON t.TitleId = tg.TitleId" +
+                                                 " JOIN Titles.dbo.Genre g ON tg.GenreId = g.Id" +
+                                                 " WHERE t.TitleId =" + request.TitleId).ToList();
+                    othernames = conn.Query<OtherName>("SELECT * FROM Titles.dbo.OtherName WHERE TitleId = " + request.TitleId).ToList();
+                    storylines = conn.Query<StoryLine>("SELECT * FROM Titles.dbo.StoryLine WHERE TitleId = " + request.TitleId).ToList();
+                    participants = conn.Query<Participant>(" SELECT p.* FROM Titles.dbo.Title t" +
                                                                          " JOIN Titles.dbo.TitleParticipant tp ON t.TitleId = tp.TitleId" +
                                                                          " JOIN Titles.dbo.Participant p ON tp.ParticipantId = p.Id" +
                                                                          " WHERE t.TitleId = " + request.TitleId).ToList();
                 }
+
+                //foreach(var participant in titleParticipants)
+                //{
+                //    participants.Add()
+                //}
 
                 movie.Titles = titles;
                 movie.Awards = awards;

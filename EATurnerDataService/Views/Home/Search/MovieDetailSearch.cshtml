@@ -12,11 +12,11 @@
 
     <table class="table table-responsive table-condensed table-hover">
         <tr>
-            <td>
-                Person
+            <td style="font-weight:bold">
+                Actor
             </td>
             <td>
-                Role
+                Type
             </td>
         </tr>
         @foreach (var actor in Model.Actors)
@@ -63,15 +63,19 @@
                     @award.AwardCompany
                 </td>
                 <td>
-                    @award.AwardTime
+                    @award.AwardTime.Year
                 </td>
-                @if(award.AwardWon)
+                @if (award.AwardWon)
                 {
-                    <b style="color:green">Won</b>
+                    <td>
+                        <b style="color:green">Won</b>
+                    </td>
                 }
                 else
                 {
+                    <td>
                     <b style="color:red">Nominated</b>
+                    </td>
                 }
             </tr>
         }
