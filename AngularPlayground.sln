@@ -6,6 +6,11 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularPlayground", "AngularPlayground\AngularPlayground.csproj", "{8B922C28-7074-468E-9F47-C27BF25BA912}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EATurnerDataService", "EATurnerDataService\EATurnerDataService.csproj", "{66A56F8D-1B9A-426E-8D26-34F9CC4537DF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{46680E59-2340-45A2-A3B0-063B151C517C} = {46680E59-2340-45A2-A3B0-063B151C517C}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EATurnerDataBackend", "EATurnerDataBackend\EATurnerDataBackend.csproj", "{46680E59-2340-45A2-A3B0-063B151C517C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +26,10 @@ Global
 		{66A56F8D-1B9A-426E-8D26-34F9CC4537DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66A56F8D-1B9A-426E-8D26-34F9CC4537DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66A56F8D-1B9A-426E-8D26-34F9CC4537DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46680E59-2340-45A2-A3B0-063B151C517C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46680E59-2340-45A2-A3B0-063B151C517C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46680E59-2340-45A2-A3B0-063B151C517C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46680E59-2340-45A2-A3B0-063B151C517C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -190,6 +193,20 @@
       <DependentUpon>TitleData.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceModel\Participant.cs" />
+    <Compile Include="ServiceModel\Award.cs" />
+    <Compile Include="ServiceModel\Genre.cs" />
+    <Compile Include="ServiceModel\Movie.cs" />
+    <Compile Include="ServiceModel\OtherName.cs" />
+    <Compile Include="ServiceModel\RequestDTOs\DetailSearchRequest.cs" />
+    <Compile Include="ServiceModel\RequestDTOs\MovieSearchRequest.cs" />
+    <Compile Include="ServiceModel\ResponseDTOs\DetailSearchResponse.cs" />
+    <Compile Include="ServiceModel\ResponseDTOs\MovieSearchResponse.cs" />
+    <Compile Include="ServiceModel\StoryLine.cs" />
+    <Compile Include="ServiceModel\Title.cs" />
+    <Compile Include="ServiceModel\TitleGenre.cs" />
+    <Compile Include="ServiceModel\TitleParticipant.cs" />
+    <Compile Include="Helpers\ServiceStackClient.cs" />
     <Compile Include="StoryLine.cs">
       <DependentUpon>TitleData.tt</DependentUpon>
     </Compile>
@@ -221,6 +238,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\loading.gif" />
     <Content Include="Content\moviereel.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -230,12 +248,10 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\indexScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="TitleData.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -267,10 +283,10 @@
     <Content Include="TitleData.edmx.diagram">
       <DependentUpon>TitleData.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Home\Search\MovieInitialSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -285,10 +301,16 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <ProjectReference Include="..\EATurnerDataBackend\EATurnerDataBackend.csproj">
+      <Project>{46680e59-2340-45a2-a3b0-063b151c517c}</Project>
+      <Name>EATurnerDataBackend</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Search\MovieDetailSearch.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

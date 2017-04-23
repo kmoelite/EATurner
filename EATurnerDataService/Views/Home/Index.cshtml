@@ -3,15 +3,18 @@
         <div class="jumbotron">
             <div style="color:red; font-size:xx-large; display:inline">MediaFind</div>
             <div style="font-size:large; font-weight:bold; display:inline">by Turner</div>
-            <h4>Search for Movies by <b>Title</b>, <b>Genre</b>, <b>Awards</b>, or <b>Actors</b>!</h4>
+            <h4>Search for Movies to see <b>Titles</b>, <b>Genres</b>, <b>Awards</b>, <b>Actors</b>, and more!</h4>
             <div class="pull-right">
                 <img src="~/Content/moviereel.png" height="100" width="50" /><img src="~/favicon.ico" />
             </div>
         </div>
     </div> 
-    <div id="SearchByDropDownDiv">
-         <div class="btn-group" style="max-width:10%; min-width:10%">
-                <button class="btn btn-default btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="criteriaButton">Search by Criteria&nbsp;<span class="caret"></span></button>
+    <div id="SearchDiv">
+         <div id="loadingDiv" style="display:none">
+             <img src="~/Content/loading.gif" height="100" width="160" />
+         </div>
+         <div class="btn-group" style="max-width:10%; min-width:10%; display:none" id="SearchByDropDownDiv">
+                <button class="btn btn-default btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="criteriaButton">Filter Criteria&nbsp;<span class="caret"></span></button>
                 <ul class="dropdown-menu">
                     <li onclick="searchByActor();"><a href="#">Actor<span class="glyphicon glyphicon-user pull-right"></span></a></li>
                     <li onclick="searchByTitle();"><a href="#">Title <span class="glyphicon glyphicon-film pull-right"></span></a></li>
@@ -21,16 +24,13 @@
             </div>
         <br /><br />
         <div class="form-group">
-            <input class="form-control input-lg" placeholder="Enter Titles, Genres, Awards, or Actors" type="text" id="universalTextBox" style="min-width:89%;max-width:89%;display:inline">
-            <button class="btn btn-info btn-lg" type="button" data-toggle="dropdown" style="background-color:#333333" id="submitSearchQueryButton">
+            <input autofocus class="form-control input-lg" placeholder="Enter Movie Title" type="text" id="universalTextBox" style="min-width:89%;max-width:89%;display:inline">
+            <button class="btn btn-info btn-lg" type="button" data-toggle="dropdown" style="background-color:#333333" id="submitSearchQueryButton" onclick="submitTextSearch()" >
                 <span class="glyphicon glyphicon-search pull-left"></span>&nbsp;Search
             </button>
         </div>
     </div>
     <div id="searchByTitleResultDiv" style="display:none"></div>
-    <div id="searchByGenreDivResult" style="display:none"></div>
-    <div id="searchByAwardDivResult" style="display:none"></div>
-    <div id="searchByActorsDivResult" style="display:none"></div>
     <div id="detailedMediaResultsDivResult" style="display:none"></div>
 </div>
 

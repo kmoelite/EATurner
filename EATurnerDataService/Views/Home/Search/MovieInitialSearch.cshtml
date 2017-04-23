@@ -1,0 +1,15 @@
+﻿@model EATurnerDataService.ServiceModel.Movie
+@{
+    if (Model.Titles.Count == 0)
+    {
+        <b style="color:red">No search results were found.</b>
+    }
+    else
+    {
+        foreach (var title in Model.Titles)
+        {
+            <a id="@title.TitleId" onclick="loadDetailsView(this.id)" style="cursor: pointer">@title.TitleName</a>
+            <br />
+        }
+    }
+}

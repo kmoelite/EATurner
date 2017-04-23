@@ -1,0 +1,82 @@
+﻿@model EATurnerDataService.ServiceModel.Movie
+@{
+    <h2>@Model.Titles.First().TitleName</h2>
+    <hr />
+    <h4>Plot Synopsis</h4>
+    <p>@Model.StoryLines.First().Description</p>
+    <br />
+    <br />
+
+    <h4>Actors</h4>
+    <br />
+
+    <table class="table table-responsive table-condensed table-hover">
+        <tr>
+            <td>
+                Person
+            </td>
+            <td>
+                Role
+            </td>
+        </tr>
+        @foreach (var actor in Model.Actors)
+        {
+        <tr>
+            <td>
+                <b>@actor.ParticipantName</b>
+            </td>
+            <td>
+                 @actor.ParticipantType
+             </td>
+        </tr>
+        }
+    </table>
+    <br />
+    <br />
+
+
+    <h4>Awards</h4>
+    <br />
+
+    <table class="table table-responsive table-condensed table-hover">
+        <tr>
+            <td>
+                Award
+            </td>
+            <td>
+                Company
+            </td>
+            <td>
+                Year
+            </td>
+            <td>
+                Status
+            </td>
+        </tr>
+        @foreach (var award in Model.Awards)
+        {
+            <tr>
+                <td>
+                    <b>@award.AwardName</b>
+                </td>
+                <td>
+                    @award.AwardCompany
+                </td>
+                <td>
+                    @award.AwardTime
+                </td>
+                @if(award.AwardWon)
+                {
+                    <b style="color:green">Won</b>
+                }
+                else
+                {
+                    <b style="color:red">Nominated</b>
+                }
+            </tr>
+        }
+    </table>
+    <br />
+    <br />
+
+}
