@@ -105,7 +105,33 @@
         </tbody>
     </table>
     <br />
-    <br />   
+    <br />
+
+    <h4><b>Other Information</b></h4>
+    <br />
+    <p><b>Languages</b></p>
+    var currentList = new List<string>();
+    var currentListOther = new List<string>();
+
+    foreach (var item in Model.OtherNames)
+    {
+        if (!currentList.Contains(item.TitleNameLanguage))
+        {
+        <p>@item.TitleNameLanguage</p>
+        }
+        currentList.Add(item.TitleNameLanguage);
+    }
+    <br />
+    <p><b>Known Also As</b></p>
+    foreach (var otherName in Model.OtherNames)
+    {
+        if (!currentListOther.Contains(otherName.TitleName))
+        {
+        <p>@otherName.TitleName</p>
+        }
+        currentListOther.Add(otherName.TitleName);
+    }
+    <br />
     <br />
     <br />
 
