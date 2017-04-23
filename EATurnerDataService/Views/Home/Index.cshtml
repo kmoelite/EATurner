@@ -1,0 +1,51 @@
+﻿<div id="searchMediaContainerDiv" class="container">
+    <div id="WelcomeDiv"> 
+        <div class="jumbotron">
+            <div style="color:red; font-size:xx-large; display:inline">MediaFind</div>
+            <div style="font-size:large; font-weight:bold; display:inline">by Turner</div>
+            <h4>Search for Movies by <b>Title</b>, <b>Genre</b>, <b>Awards</b>, or <b>Actors</b>!</h4>
+        </div>
+    </div> 
+    <div id="SearchByDropDownDiv">
+         <div class="btn-group" style="max-width:10%; min-width:10%">
+                <button class="btn btn-default btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="criteriaButton">Search by Criteria&nbsp;<span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li onclick="searchByActor();"><a href="#">Actor<span class="glyphicon glyphicon-user pull-right"></span></a></li>
+                    <li onclick="searchByTitle();"><a href="#">Title <span class="glyphicon glyphicon-film pull-right"></span></a></li>
+                    <li onclick="searchByGenre();"><a href="#">Genre <span class="glyphicon glyphicon-book pull-right"></span></a></li>
+                    <li onclick="searchByAward();"><a href="#">Awards<span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+                </ul>
+            </div>
+        <br /><br />
+        <div class="form-group">
+            <input class="form-control input-lg" placeholder="Enter Titles, Genres, Awards, or Actors" type="text" id="universalTextBox" style="min-width:89%;max-width:89%;display:inline">
+            <button class="btn btn-info btn-lg" type="button" data-toggle="dropdown" style="background-color:#333333" id="submitSearchQueryButton">
+                <span class="glyphicon glyphicon-search pull-left"></span>&nbsp;Search
+            </button>
+        </div>
+    </div>
+    <div id="searchByTitleResultDiv" style="display:none"></div>
+    <div id="searchByGenreDivResult" style="display:none"></div>
+    <div id="searchByAwardDivResult" style="display:none"></div>
+    <div id="searchByActorsDivResult" style="display:none"></div>
+    <div id="detailedMediaResultsDivResult" style="display:none"></div>
+</div>
+
+<script>
+    function searchByActor() {
+        $('#criteriaButton').html('<b style="color:red">Actor Search</b>');
+    }
+
+    function searchByTitle() {
+        $('#criteriaButton').html('<b style="color:red">Title Search</b>');
+    }
+
+    function searchByGenre() {
+        $('#criteriaButton').html('<b style="color:red">Genre Search</b>');
+    }
+
+    function searchByAward() {
+        $('#criteriaButton').html('<b style="color:red">Award Search</b>');
+    }
+
+</script>
