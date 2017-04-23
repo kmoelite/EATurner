@@ -1,99 +1,115 @@
 ﻿@model EATurnerDataService.ServiceModel.Movie
 @{
-    <h2>@Model.Titles.First().TitleName</h2>
+    <br />
+    <h2 >@Model.Titles.First().TitleName</h2>
     <hr />
-    <h4>Plot Synopsis</h4>
-    <p>@Model.StoryLines.First().Description</p>
     <br />
+    <h4><b>Plot Synopsis</b></h4>
+    for (int i = 0; i < Model.StoryLines.Count; i++)
+    { 
+    <p><b>Version @(i+1)</b> - @Model.StoryLines[i].Description</p>
+    }
     <br />
 
-    <h4>Actors</h4>
-    <br />
-
-    <table class="table table-responsive table-condensed table-hover" style="overflow-y:scroll" >
-        <tr>
-            <td style="font-weight:bold">
-                Actor
-            </td>
-            <td style="font-weight:bold">
-                Type
-            </td>
-        </tr>
-        @foreach (var actor in Model.Actors)
+    var genreString = Model.Genres.FirstOrDefault().Name;
+    foreach (var genre in Model.Genres)
+    {
+        if (genre.Name != genreString)
         {
-        <tr>
-            <td>
-                <b>@actor.ParticipantName</b>
-            </td>
-            <td>
-                 @actor.ParticipantType
-             </td>
-        </tr>
+            genreString += (", " + genre.Name);
         }
-    </table>
-    <br />
-    <br />
+    }
+    <h4><b>Genres</b></h4>
+    <p>@genreString.</p>
+        <br />
+        <br />
+        <h4><b>Awards</b></h4>
+        <br />
 
-
-    <h4>Awards</h4>
-    <br />
-
-    <table class="table table-responsive table-condensed table-hover" style="overflow-y:scroll">
-        <tr>
-            <td style="font-weight:bold">
-                Award
-            </td>
-            <td style="font-weight:bold">
-                Company
-            </td>
-            <td style="font-weight:bold">
-                Year
-            </td>
-            <td style="font-weight:bold">
-                Status
-            </td>
-        </tr>
-        @foreach (var awardItem in Model.Awards)
-        {
+        <table class="table table-responsive table-condensed table-hover" style="overflow-y:scroll">
+            <thead>
             <tr>
-                <td>
-                    <b>@awardItem.Award</b>
+                <td style="font-weight:bold">
+                    Award
                 </td>
-                <td>
-                    @awardItem.AwardCompany
+                <td style="font-weight:bold">
+                    Company
                 </td>
-                <td>
-                    @awardItem.AwardYear
+                <td style="font-weight:bold">
+                    Year
                 </td>
-                @if (awardItem != null)
+                <td style="font-weight:bold">
+                    Status
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach (var awardItem in Model.Awards)
                 {
-                    if (awardItem.AwardWon != null)
-                    {
-                        if (awardItem.AwardWon == true)
-                        {
+                    <tr>
                         <td>
-                            <b style="color:green">Won</b>
+                            @awardItem.Award
                         </td>
+                        <td>
+                            @awardItem.AwardCompany
+                        </td>
+                        <td>
+                            @awardItem.AwardYear
+                        </td>
+                        @if (awardItem != null)
+                        {
+                            if (awardItem.AwardWon == true)
+                            {
+                                <td>
+                                    <b style="color:green">Won</b>
+                                </td>
+                            }
+                            else
+                            {
+                                <td style="color:red">Nominated</td>
+                            }
                         }
                         else
                         {
-                        <td>
-                            <b style = "color:red" > Nominated </b>
-                         </td>
+                            <b> --- </b>
                         }
-                    }
-                    else
-                    {
-                        <b> --- </b>
-                    }
+                    </tr>
                 }
-                else
-                {
-                    <b> --- </b>
-                }
+            </tbody>
+        </table>
+
+        <br />
+        <br />
+    <h4><b>Full Cast</b></h4>
+    <br />
+
+    <table class="table table-responsive table-condensed table-hover" style="overflow-y:scroll; max-height:1000px" >
+        <thead style="background-color:lightgray">
+            <tr>
+                <td style="font-weight:bold">
+                    Actor
+                </td>
+                <td style="font-weight:bold">
+                    Type
+                </td>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var actor in Model.Actors)
+            {
+                <tr>
+                    <td>
+                        @actor.Name
+                    </td>
+                    <td>
+                        @actor.ParticipantType
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
+    <br />
+    <br />   
     <br />
     <br />
 

@@ -7,6 +7,7 @@ namespace EATurnerDataService.ServiceModel
 {
     public class Genre
     {
-        public string GenreName { get; set; }
+        public string Name { get; set; }
+        public int GenreId { get; set; }
     }
 }

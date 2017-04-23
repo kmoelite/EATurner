@@ -8,7 +8,7 @@ namespace EATurnerDataService.ServiceModel
     public class Participant
     {
         public int ParticipantId { get; set; }
-        public string ParticipantName { get; set; }
+        public string Name { get; set; }
         public string ParticipantType { get; set; }
     }
 }

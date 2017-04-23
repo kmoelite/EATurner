@@ -29,6 +29,8 @@ $("#universalTextBox").keyup(function (event) {
 
 function submitTextSearch() {
     $('#loadingDiv').show()
+    $('#detailedMediaResultsDivResult').hide();
+    $('#searchByTitleResultDiv').hide();
     $.ajax({
         type: "POST",
         url: "/Home/GetMovie/",
@@ -62,6 +64,6 @@ function loadDetailsView(id) {
         }).error(function (result) {
             alert('failure');
         console.log(result);
-        //alert('An unexpected error has occurred. Please try again.');
-        //location.reload();
+        alert('An unexpected error has occurred. Please try again.');
+        location.reload();
     });}
