@@ -26,8 +26,7 @@
         <h4><b>Awards</b></h4>
         <br />
 
-        <table class="table table-responsive table-condensed table-hover" style="overflow-y:scroll">
-            <thead>
+        <table class="table table-responsive table-condensed table-hover">
             <tr>
                 <td style="font-weight:bold">
                     Award
@@ -42,8 +41,6 @@
                     Status
                 </td>
             </tr>
-            </thead>
-            <tbody>
                 @foreach (var awardItem in Model.Awards)
                 {
                     <tr>
@@ -75,7 +72,6 @@
                         }
                     </tr>
                 }
-            </tbody>
         </table>
 
         <br />
@@ -83,11 +79,11 @@
     <h4><b>Full Cast</b></h4>
     <br />
 
-    <table class="table table-responsive table-condensed table-hover" style="overflow-y:scroll; max-height:1000px" >
+    <table class="table table-responsive table-condensed table-hover">
         <thead style="background-color:lightgray">
             <tr>
                 <td style="font-weight:bold">
-                    Actor
+                    Cast Member
                 </td>
                 <td style="font-weight:bold">
                     Type
