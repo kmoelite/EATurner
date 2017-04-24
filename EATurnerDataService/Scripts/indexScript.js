@@ -1,17 +1,53 @@
 ﻿function searchByActor() {
     $('#criteriaButton').html('<b style="color:red">Actors</b>');
+    hideAllFilteredDivs();
+    $('#detailedResultsCast').show();
 }
 
-function searchByTitle() {
-    $('#criteriaButton').html('<b style="color:red">Title</b>');
+function searchByMisc() {
+    $('#criteriaButton').html('<b style="color:red">Miscellaneous</b>');
+    hideAllFilteredDivs();
+    $('#detailedResultsOtherInfo').show();
 }
 
 function searchByGenre() {
     $('#criteriaButton').html('<b style="color:red">Genres</b>');
+    hideAllFilteredDivs();
+    $('#detailedResultsGenres').show();
 }
 
 function searchByAward() {
     $('#criteriaButton').html('<b style="color:red">Awards</b>');
+    hideAllFilteredDivs();
+    $('#detailedResultsAwards').show();
+}
+
+function searchBySynopsis() {
+    $('#criteriaButton').html('<b style="color:red">Synopsis</b>');
+    hideAllFilteredDivs();
+    $('#detailedResultsSynopsis').show();
+}
+
+function showMeEverything() {
+    $('#criteriaButton').html('<b style="color:red">Everything</b>');
+    showAllFilteredDivs();
+}
+
+function hideAllFilteredDivs()
+{
+    $('#detailedResultsSynopsis').hide();
+    $('#detailedResultsGenres').hide();
+    $('#detailedResultsAwards').hide();
+    $('#detailedResultsCast').hide();
+    $('#detailedResultsOtherInfo').hide();
+}
+
+function showAllFilteredDivs() {
+    $('#detailedResultsSynopsis').show();
+    $('#detailedResultsGenres').show();
+    $('#detailedResultsAwards').show();
+    $('#detailedResultsCast').show();
+    $('#detailedResultsOtherInfo').show();
 }
 
 function sanitizeInput(searchText)
@@ -28,7 +64,8 @@ $("#universalTextBox").keyup(function (event) {
 });
 
 function submitTextSearch() {
-    $('#loadingDiv').show()
+    $('#loadingDiv').show();
+    $('#SearchByDropDownDiv').hide();
     $('#detailedMediaResultsDivResult').hide();
     $('#searchByTitleResultDiv').hide();
     $.ajax({
@@ -36,12 +73,10 @@ function submitTextSearch() {
         url: "/Home/GetMovie/",
         data: { movieSearchText : $('#universalTextBox').val() },
     }).success(function (result) {
-        $('#loadingDiv').hide()
-        console.log(result);
+        $('#loadingDiv').hide();
         $('#searchByTitleResultDiv').html(result);
         $('#searchByTitleResultDiv').show();
     }).error(function (result) {
-        console.log(result);
         alert('An unexpected error has occurred. Please try again.');
         location.reload();
         });
@@ -49,6 +84,7 @@ function submitTextSearch() {
 
 function loadDetailsView(id) {
     $('#loadingDiv').show();
+    $('#SearchByDropDownDiv').hide();
     $('#detailedMediaResultsDivResult').hide();
     $('#searchByTitleResultDiv').hide();
     $.ajax({
@@ -57,13 +93,12 @@ function loadDetailsView(id) {
         data: { titleId: id },
     }).success(function (result) {
         $('#loadingDiv').hide();
-        console.log(result);
         $('#detailedMediaResultsDivResult').html(result);
         $('#detailedMediaResultsDivResult').show();
         $('#SearchByDropDownDiv').show();
+        $('#universalTextBox').val($('#movieSelected').text());
         }).error(function (result) {
             alert('failure');
-        console.log(result);
         alert('An unexpected error has occurred. Please try again.');
         location.reload();
     });}

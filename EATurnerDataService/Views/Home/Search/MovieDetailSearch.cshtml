@@ -1,28 +1,34 @@
 ﻿@model EATurnerDataService.ServiceModel.Movie
 @{
     <br />
-    <h2 >@Model.Titles.First().TitleName</h2>
+    <h2 id="movieSelected">@Model.Titles.First().TitleName</h2>
     <hr />
     <br />
-    <h4><b>Plot Synopsis</b></h4>
-    for (int i = 0; i < Model.StoryLines.Count; i++)
-    { 
-    <p><b>Version @(i+1)</b> - @Model.StoryLines[i].Description</p>
-    }
-    <br />
-
-    var genreString = Model.Genres.FirstOrDefault().Name;
-    foreach (var genre in Model.Genres)
-    {
-        if (genre.Name != genreString)
+    <div id="detailedResultsSynopsis">
+        <h4><b>Plot Synopsis</b></h4>
+        @for (int i = 0; i < Model.StoryLines.Count; i++)
         {
-            genreString += (", " + genre.Name);
+            <p><b>Version @(i + 1)</b> - @Model.StoryLines[i].Description</p>
         }
-    }
-    <h4><b>Genres</b></h4>
-    <p>@genreString.</p>
+        <br />
+    </div>
+    <div id="detailedResultsGenres">
+        @{
+            var genreString = Model.Genres.FirstOrDefault().Name;
+        }
+        @foreach (var genre in Model.Genres)
+        {
+            if (genre.Name != genreString)
+            {
+                genreString += (", " + genre.Name);
+            }
+        }
+        <h4><b>Genres</b></h4>
+        <p>@genreString.</p>
         <br />
         <br />
+    </div>
+    <div id="detailedResultsAwards">
         <h4><b>Awards</b></h4>
         <br />
 
@@ -41,98 +47,102 @@
                     Status
                 </td>
             </tr>
-                @foreach (var awardItem in Model.Awards)
-                {
-                    <tr>
-                        <td>
-                            @awardItem.Award
-                        </td>
-                        <td>
-                            @awardItem.AwardCompany
-                        </td>
-                        <td>
-                            @awardItem.AwardYear
-                        </td>
-                        @if (awardItem != null)
-                        {
-                            if (awardItem.AwardWon == true)
-                            {
-                                <td>
-                                    <b style="color:green">Won</b>
-                                </td>
-                            }
-                            else
-                            {
-                                <td style="color:red">Nominated</td>
-                            }
-                        }
-                        else
-                        {
-                            <b> --- </b>
-                        }
-                    </tr>
-                }
-        </table>
-
-        <br />
-        <br />
-    <h4><b>Full Cast</b></h4>
-    <br />
-
-    <table class="table table-responsive table-condensed table-hover">
-        <thead style="background-color:lightgray">
-            <tr>
-                <td style="font-weight:bold">
-                    Cast Member
-                </td>
-                <td style="font-weight:bold">
-                    Type
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var actor in Model.Actors)
+            @foreach (var awardItem in Model.Awards)
             {
                 <tr>
                     <td>
-                        @actor.Name
+                        @awardItem.Award
                     </td>
                     <td>
-                        @actor.ParticipantType
+                        @awardItem.AwardCompany
                     </td>
+                    <td>
+                        @awardItem.AwardYear
+                    </td>
+                    @if (awardItem != null)
+                    {
+                        if (awardItem.AwardWon == true)
+                        {
+                            <td>
+                                <b style="color:green">Won</b>
+                            </td>
+                        }
+                        else
+                        {
+                            <td style="color:red"><i>Nominated</i></td>
+                        }
+                    }
+                    else
+                    {
+                        <b> --- </b>
+                    }
                 </tr>
             }
-        </tbody>
-    </table>
+        </table>
+    </div>
     <br />
-    <br />
+        <br />
+        <div id="detailedResultsCast">
+            <h4><b>Full Cast</b></h4>
+            <br />
 
-    <h4><b>Other Information</b></h4>
-    <br />
-    <p><b>Languages</b></p>
-    var currentList = new List<string>();
-    var currentListOther = new List<string>();
+            <table class="table table-responsive table-condensed table-hover">
+                <thead style="background-color:lightgray">
+                    <tr>
+                        <td style="font-weight:bold">
+                            Cast Member
+                        </td>
+                        <td style="font-weight:bold">
+                            Type
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var actor in Model.Actors)
+                    {
+                        <tr>
+                            <td>
+                                @actor.Name
+                            </td>
+                            <td>
+                                @actor.ParticipantType
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <br />
+            <br />
+            <div id="detailedResultsOtherInfo">
 
-    foreach (var item in Model.OtherNames)
-    {
-        if (!currentList.Contains(item.TitleNameLanguage))
-        {
-        <p>@item.TitleNameLanguage</p>
-        }
-        currentList.Add(item.TitleNameLanguage);
-    }
-    <br />
-    <p><b>Known Also As</b></p>
-    foreach (var otherName in Model.OtherNames)
-    {
-        if (!currentListOther.Contains(otherName.TitleName))
-        {
-        <p>@otherName.TitleName</p>
-        }
-        currentListOther.Add(otherName.TitleName);
-    }
-    <br />
-    <br />
-    <br />
+                <h4><b>Other Information</b></h4>
+                <br />
+                <p><b>Languages</b></p>
+                @{
+                    var currentList = new List<string>();
+                    var currentListOther = new List<string>();
 
+                    foreach (var item in Model.OtherNames)
+                    {
+                        if (!currentList.Contains(item.TitleNameLanguage))
+                        {
+                            <p>@item.TitleNameLanguage</p>
+                        }
+                        currentList.Add(item.TitleNameLanguage);
+                    }
+                    <br />
+                        <p><b>Known Also As</b></p>
+                    foreach (var otherName in Model.OtherNames)
+                    {
+                        if (!currentListOther.Contains(otherName.TitleName))
+                        {
+                            <p>@otherName.TitleName</p>
+                        }
+                        currentListOther.Add(otherName.TitleName);
+                    }
+                }
+
+            </div>
+<br /><br /><br />
 }
